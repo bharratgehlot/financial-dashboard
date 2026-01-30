@@ -16,12 +16,15 @@ api.js
 
 import { initState } from "./state.js"
 import { fetchTransactions } from "./api.js"
-import { initUI } from "./dom.js"
+import { initUI, render } from "./dom.js"
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   console.log("App initlized")
 
-  initState();
-  initUI();
-  fetchTransactions();
+  initState();        // reset state
+  initUI();           // setup static UI 
+  render();           // show loading state
+
+  await fetchTransactions();  // fetch API data
+  render(); // render table
 })

@@ -2,27 +2,23 @@
 <html lang="en">
   <head>
     <title>Financial dashboard</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
   </head>
 
   <body>
-    
-    <header> 
-      <div class="container" >
+    <header>
+      <div class="container">
         <h1>Financial dashboard</h1>
       </div>
-      
     </header>
-    
-    <main class="container" >
+
+    <main class="container">
       <h2 class="dashboard-subtitle">Dashboard contents</h2>
 
       <section id="stats">
-
         <h2>Overview</h2>
 
         <div class="stats-grid">
@@ -30,47 +26,41 @@
             <span class="stat-label">Total Transactions</span>
             <span class="stat-value">1,245</span>
           </div>
-        
+
           <div class="stat-card">
             <span class="stat-label">Success Rate</span>
             <span class="stat-value">92%</span>
           </div>
-        
+
           <div class="stat-card">
             <span class="stat-label">Total Volume</span>
             <span class="stat-value">$128,450</span>
           </div>
 
-          
           <div class="stat-card">
             <span class="stat-label">Net Profit</span>
             <span class="stat-value">$950,230</span>
           </div>
-
-
         </div>
-        
       </section>
 
       <section id="filters">
         <h2>Filters</h2>
         <div class="filters-bar">
           <input type="text" placeholder="Search transactions" />
-        
+
           <select>
             <option value="">All Status</option>
-            <option value="paid">Paid</option>
-            <option value="pending">Pending</option>
-            <option value="cancelled">Cancelled</option>
+            <option class="status-completed" value="completed">Completed</option>
+            <option class="status-pending" value="pending">Pending</option>
+            <option value="failed">Failed</option>
           </select>
-        
+
           <input type="date" />
           <input type="date" />
-        
+
           <button type="button">Clear</button>
         </div>
-        
-
       </section>
 
       <section id="transactions">
@@ -87,53 +77,18 @@
             </thead>
             <tbody>
               <!-- Rows injected by JS-->
-              <tr>
-                <td>#1001</td>
-                <td>2026-01-20</td>
-                <td>$250.00</td>
-                <td><span class="status-paid">Paid</span></td>
-              </tr>
-              <tr>
-                <td>#1002</td>
-                <td>2026-01-21</td>
-                <td>$120.50</td>
-                <td><span class="status-pending">Pending</span></td>
-              </tr>
-              <tr>
-                <td>#1003</td>
-                <td>2026-01-22</td>
-                <td>$3,400.00</td>
-                <td><span class="status-paid">Paid</span></td>
-              </tr>
-              <tr>
-                <td>#1004</td>
-                <td>2026-01-24</td>
-                <td>$45.00</td>
-                <td><span class="status-shipped">Shipped</span></td>
-              </tr>
-              <tr>
-                <td>#1005</td>
-                <td>2026-01-25</td>
-                <td>$890.10</td>
-                <td><span class="status-cancelled">Cancelled</span></td>
-              </tr>
             </tbody>
           </table>
         </div>
-
       </section>
-
 
       <aside id="transaction-details">
         <h2>Transaction Details</h2>
         <div class="details-panel">
           <p class="details-empty">Select a transaction to view details</p>
         </div>
-
       </aside>
-
-
     </main>
-    <script type="module" src="js/main.js" ></script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>

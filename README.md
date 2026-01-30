@@ -32,3 +32,7 @@ This project is designed to demonstrate frontend fundamentals such as DOM manipu
 This project is built as a **frontend portfolio project** to showcase readiness for working on real-world, production-style financial dashboards.
 
 
+## NEXT
+
+500 transactions
+Pagination
