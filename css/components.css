@@ -35,7 +35,7 @@ tbody tr {
 
 /* Hover feedback (desktop only feel) */
 tbody tr:hover {
-  background-color: #f9fafb;
+  background-color: #a8badf;
   cursor: pointer;
 }
 
@@ -69,11 +69,17 @@ tbody tr:hover {
 
 /* ===== Filters Layout ===== */
 
+#filters {
+  border-left: 2px solid #000000;
+}
+
+
 .filters-bar {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   align-items: center;
+
 }
 
 .filters-bar input,
@@ -106,7 +112,7 @@ tbody tr:hover {
 /* ===== Transaction Details Panel ===== */
 
 #transaction-details {
-  border-left: 1px solid #000000;
+  border-left: 2px solid #000000;
   padding-left: 16px;
 }
 

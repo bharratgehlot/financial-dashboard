@@ -9,36 +9,77 @@
  */
 
 import { state } from "./state.js"
+import { applyFilters } from "./filter.js";
 
 const tbody = document.querySelector("#transactions tbody");
 const statusSelected = document.querySelector("#filters select")
+const searchedInput = document.querySelector("#filters input")
+const detailedView = document.querySelector("#transaction-details .details-panel");
+const clearFiltersButton = document.querySelector("#filters button");
+const startDateInput = document.querySelector("#start-date");
+const endDateInput = document.querySelector("#end-date");
+
 
 export function initUI() {
-  statusSelected.addEventListener("change", () => {
-    const status = statusSelected.value;
-    
-    if (!status) {
-      state.visibleTransactions = state.transactions;
-    } else {
-      state.visibleTransactions = state.transactions.filter(
-        txn => txn.status === status
-      );
-    }
 
+  statusSelected.addEventListener("change", () => {
+    state.filters.status = statusSelected.value;
+    applyFilters();
     render();
   });
 
+  let debounceTimer;
+
+  searchedInput.addEventListener("input", () => {
+    const value = searchedInput.value.trim();
+
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      state.filters.search = value;
+      applyFilters();
+      render();
+    }, 700);
+  });
+
+  startDateInput.addEventListener("change", () => {
+    state.filters.startDate = startDateInput.value;
+    applyFilters();
+    render();
+  });
+
+  endDateInput.addEventListener("change", () => {
+    state.filters.endDate = endDateInput.value;
+    applyFilters();
+    render();
+  });
+
+  clearFiltersButton.addEventListener("click", () => {
+    state.filters.search = "";
+    state.filters.status = "";
+    searchedInput.value = "";
+    state.filters.startDate = "";
+    state.filters.endDate = "";
+    statusSelected.value = "";
+    startDateInput.value = "";
+    endDateInput.value = "";
+    state.selectedTransaction = null;
+    applyFilters();
+    render();
+    renderDetails();
+  })
   // cache DOM elements
   // setup empty placeholders
   // bind event listeners (later)
 }
 
-const detailedView = document.querySelector("#transaction-details .details-panel");
 
-export function renderDetails(){
+
+
+
+export function renderDetails() {
   const txn = state.selectedTransaction;
 
-  if(!txn) {
+  if (!txn) {
     detailedView.innerHTML = `<p class="details-empty">Select a transaction to view details</p>`;
     return;
   }
@@ -68,7 +109,7 @@ export function render() {
     return;
   }
 
-  if (state.visibleTransactions.length === 0) {
+  if (state.filteredTransactions.length === 0) {
     tbody.innerHTML = `<tr><td colspan="4">No transactions found</td></tr>`;
     return;
   }
@@ -77,7 +118,7 @@ export function render() {
 
   tbody.innerHTML = "";
 
-  state.visibleTransactions.forEach(txn => {
+  state.filteredTransactions.forEach(txn => {
     const tr = document.createElement("tr");
 
     tr.classList.add(`row-${txn.status}`);
@@ -85,7 +126,7 @@ export function render() {
     tr.addEventListener("click", () => {
       state.selectedTransaction = txn;
       renderDetails();
-    })
+    });
 
     tr.innerHTML = `
       <td>#${txn.id}</td>

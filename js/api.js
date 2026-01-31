@@ -26,7 +26,7 @@ export async function fetchTransactions() {
     state.transactions = data;
 
     // default view all transactions
-    state.visibleTransactions = data;
+    state.allTransactions = data;
   }
   catch (err) {
     state.error = err.message;

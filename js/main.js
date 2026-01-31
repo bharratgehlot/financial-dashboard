@@ -17,6 +17,7 @@ api.js
 import { initState } from "./state.js"
 import { fetchTransactions } from "./api.js"
 import { initUI, render } from "./dom.js"
+import { applyFilters } from "./filter.js"
 
 document.addEventListener("DOMContentLoaded", async () => {
   console.log("App initlized")
@@ -26,5 +27,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   render();           // show loading state
 
   await fetchTransactions();  // fetch API data
+  applyFilters();
   render(); // render table
 })

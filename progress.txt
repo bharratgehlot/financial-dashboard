@@ -1,0 +1,19 @@
+What to include in search??
+
+Search filters transactions by ID, sender, receiver, and reference, while date and status are handled via explicit filters
+
+Search responsibility:
+     ID
+     sender
+     receiver
+     reference
+
+Search will ignore
+
+     states
+     date range
+
+transactions = data from api
+allTransaction = clean form of data used by UI          
+
+can't login live states

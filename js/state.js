@@ -10,9 +10,10 @@
  */
 
 export const state = {
-  transactions: [],
-  visibleTransactions: [],
+  transactions: [], // raw api data 
+  allTransactions: [], // cleaned data
   selectedTransaction: null,
+  filteredTransactions: [],
 
   filters: {
     search: "",
@@ -26,8 +27,9 @@ export const state = {
 
 export function initState() {
   state.transactions = [];
-  state.visibleTransactions = [];
+  state.allTransactions = [];
   state.selectedTransaction = null;
+  state.filteredTransactions = [];
 
   state.filters = {
     search: "",
@@ -39,5 +41,5 @@ export function initState() {
   state.isLoading = false;
   state.error = null;
 
-  console.log("State initlized");
 }
+
