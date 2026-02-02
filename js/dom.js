@@ -10,6 +10,16 @@
 
 import { state } from "./state.js"
 import { applyFilters } from "./filter.js";
+import { calculateStats } from "./stats.js";
+
+
+function renderStats(stats) {
+  statTotalEl.textContent = stats.total;
+  statSuccessEl.textContent = `${stats.successRate}%`;
+  statVolumeEl.textContent = `₹${stats.totalVolume.toLocaleString()}`;
+  statAvgEl.textContent = `₹${stats.avgAmount.toLocaleString()}`;
+}
+
 
 const tbody = document.querySelector("#transactions tbody");
 const statusSelected = document.querySelector("#filters select")
@@ -22,6 +32,13 @@ const endDateInput = document.querySelector("#end-date");
 const filterToggleBtn = document.querySelector("#filter-toggle");
 const filterPanel = document.querySelector(".filters-panel");
 
+const statTotalEl = document.querySelector("#stats .stat-card:nth-child(1) .stat-value");
+const statSuccessEl = document.querySelector("#stats .stat-card:nth-child(2) .stat-value");
+const statVolumeEl = document.querySelector("#stats .stat-card:nth-child(3) .stat-value");
+const statAvgEl = document.querySelector("#stats .stat-card:nth-child(4) .stat-value");
+
+
+let selectedRowEl = null;
 
 export function initUI() {
   console.log(filterToggleBtn, filterPanel);
@@ -67,6 +84,7 @@ export function initUI() {
     startDateInput.value = "";
     endDateInput.value = "";
     state.selectedTransaction = null;
+    selectedRowEl = null;
     applyFilters();
     render();
     renderDetails();
@@ -107,18 +125,47 @@ export function renderDetails() {
   const txn = state.selectedTransaction;
 
   if (!txn) {
-    detailedView.innerHTML = `<p class="details-empty">Select a transaction to view details</p>`;
+    detailedView.innerHTML = `
+
+    <p class="details-empty">Select a transaction to view details</p>
+
+    `;
     return;
   }
 
   detailedView.innerHTML = `
-  <p><strong>ID:</strong> #${txn.id}</p>
-  <p><strong>Date:</strong> ${new Date(txn.createdAt).toLocaleString()}</p>
-  <p><strong>Amount:</strong> ₹${txn.amount}</p>
-  <p><strong>Status:</strong> ${txn.status}</p>
-  <p><strong>Sender:</strong> ${txn.sender}</p>
-  <p><strong>Receiver:</strong> ${txn.receiver}</p>
-  <p><strong>Reference:</strong> ${txn.reference}</p>
+  <div><strong>ID:</strong><span>#${txn.id}</span></div>
+  <div class="details-item">
+  <strong>Date</strong>
+  <span>${new Date(txn.createdAt).toLocaleString()}</span>
+</div>
+
+<div class="details-item">
+  <strong>Amount</strong>
+  <span>₹${txn.amount}</span>
+</div>
+
+<div class="details-item">
+  <strong>Status</strong>
+  <span class="status ${txn.status}">
+    ${txn.status}
+  </span>
+</div>
+
+<div class="details-item">
+  <strong>Sender</strong>
+  <span>${txn.sender || "—"}</span>
+</div>
+
+<div class="details-item">
+  <strong>Receiver</strong>
+  <span>${txn.receiver || "—"}</span>
+</div>
+
+<div class="details-item">
+  <strong>Reference</strong>
+  <span>${txn.reference || "—"}</span>
+</div>
 `;
 
 }
@@ -136,10 +183,19 @@ export function render() {
     return;
   }
 
+  // render stats dynamically
+
+  const stats = calculateStats(state.filteredTransactions);
+  renderStats(stats);
+
+
   if (state.filteredTransactions.length === 0) {
     tbody.innerHTML = `<tr><td colspan="4">No transactions found</td></tr>`;
     return;
   }
+
+
+
 
   // render table + stats
 
@@ -150,17 +206,36 @@ export function render() {
 
     tr.classList.add(`row-${txn.status}`);
 
-    tr.addEventListener("click", () => {
-      state.selectedTransaction = txn;
-      renderDetails();
-    });
-
     tr.innerHTML = `
       <td>#${txn.id}</td>
       <td>${new Date(txn.createdAt).toLocaleDateString()}</td>
       <td>₹${txn.amount}</td>
       <td>${txn.status}</td>
     `;
+
+    // restore selection after re-render
+
+    if (state.selectedTransaction?.id === txn.id) {
+      tr.classList.add("selected");
+      selectedRowEl = tr;
+    }
+
+    tr.addEventListener("click", () => {
+
+      if (selectedRowEl) {
+        selectedRowEl.classList.remove("selected");
+      }
+
+      // apply new selection
+
+      tr.classList.add("selected");
+      selectedRowEl = tr;
+
+
+      state.selectedTransaction = txn;
+      renderDetails();
+    });
+
 
     tbody.appendChild(tr);
   });

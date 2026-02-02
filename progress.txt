@@ -34,3 +34,5 @@ LEft
 TABLE UI
 PAGINATION
 STATS from data
+Sort can be added if have time
+Loading UI

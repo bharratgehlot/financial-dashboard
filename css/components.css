@@ -33,6 +33,12 @@ tbody tr {
   border-bottom: 1px solid #e5e7eb;
 }
 
+/* Selected transaction row */
+
+tbody tr.selected{
+  background-color: #E0ECFF;
+}
+
 /* Hover feedback (desktop only feel) */
 tbody tr:hover {
   background-color: #F1F5F9;
@@ -232,16 +238,11 @@ tbody tr:hover {
 }
 
 .details-panel {
-  background-color: #fafafa;
-  border-radius: 6px;
-  min-height: 100px;
-  padding: 16px;
-}
-
-.details-panel p {
+  max-width: 360px;
   margin: 8px 0;
   font-size: 14px;
 }
+
 
 .details-empty {
   color: #999;
@@ -249,12 +250,35 @@ tbody tr:hover {
   text-align: center;
 }
 
+.details-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
 
-.details-panel strong {
-  display: inline-block;
-  width: 90px;
-  /* aligns labels */
-  color: #555;
+.details-item strong {
+  color: #374151;
+  font-weight: 600;
+  min-width: 90px;
+}
+
+.details-item span {
+  color: #0F172A;
+  text-align: right;
+}
+
+.status.completed {
+  color: #16A34A;
+}
+
+.status.pending {
+  color: #F59E0B;
+}
+
+.status.failed {
+  color: #DC2626;
 }
 
 /* ===== Mobile Overrides ===== */
