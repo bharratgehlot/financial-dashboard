@@ -15,12 +15,16 @@ const tbody = document.querySelector("#transactions tbody");
 const statusSelected = document.querySelector("#filters select")
 const searchedInput = document.querySelector("#filters input")
 const detailedView = document.querySelector("#transaction-details .details-panel");
-const clearFiltersButton = document.querySelector("#filters button");
+const clearFiltersButton = document.querySelector(".filters-panel button");
 const startDateInput = document.querySelector("#start-date");
 const endDateInput = document.querySelector("#end-date");
 
+const filterToggleBtn = document.querySelector("#filter-toggle");
+const filterPanel = document.querySelector(".filters-panel");
+
 
 export function initUI() {
+  console.log(filterToggleBtn, filterPanel);
 
   statusSelected.addEventListener("change", () => {
     state.filters.status = statusSelected.value;
@@ -67,6 +71,29 @@ export function initUI() {
     render();
     renderDetails();
   })
+
+  //  Filter panel visibility 
+
+  if (filterToggleBtn && filterPanel) {
+    filterToggleBtn.addEventListener("click", () => {
+      const isOpen = filterPanel.style.display === "flex";
+      filterPanel.style.display = isOpen ? "none" : "flex";
+    });
+  }
+
+  // Clicking outside will close the filter panel
+
+  document.addEventListener("click", (e) => {
+    if (!filterPanel || !filterToggleBtn) return;
+
+    const clickedInsidePanel = filterPanel.contains(e.target);
+    const clickedToggle = filterToggleBtn.contains(e.target);
+
+    if (!clickedInsidePanel && !clickedToggle) {
+      filterPanel.style.display = "none";
+    }
+  });
+
   // cache DOM elements
   // setup empty placeholders
   // bind event listeners (later)

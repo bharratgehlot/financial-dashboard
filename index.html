@@ -1,57 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Financial dashboard</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/layout.css" />
-    <link rel="stylesheet" href="css/components.css" />
-  </head>
 
-  <body>
+<head>
+  <title>Financial dashboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+
+<body>
+
+  
+
+  <div class="container">
     <header>
-      <div class="container">
+      <div>
         <h1>Financial dashboard</h1>
       </div>
     </header>
 
-    <main class="container">
+    <main>
       <h2 class="dashboard-subtitle">Dashboard contents</h2>
 
+      <!-- FIRST SECTION Stats -->
+
       <section id="stats">
-        <h2>Overview</h2>
-
         <div class="stats-grid">
+
+          <!-- Income -->
           <div class="stat-card">
-            <span class="stat-label">Total Transactions</span>
-            <span class="stat-value">1,245</span>
+
+            <div class="stat-top">
+              <div class="stat-title">
+                <span class="stat-icon">💰</span>
+              <span class="stat-label">Income</span>
+            </div>
+              <span class="stat-menu">•••</span>
+            </div>
+           
+            <div class="stat-main">
+             <span class="stat-value">$23.23M</span>
+             <span class="stat-change positive">↗ 12%</span>
+            </div>
+
           </div>
 
-          <div class="stat-card">
-            <span class="stat-label">Success Rate</span>
-            <span class="stat-value">92%</span>
-          </div>
+          <!-- Expenses -->
 
           <div class="stat-card">
-            <span class="stat-label">Total Volume</span>
-            <span class="stat-value">$128,450</span>
+            <div class="stat-top">
+              <div class="stat-title">
+                <span class="stat-icon">💸</span>
+                <span class="stat-label">Expenses</span>
+              </div>
+              <span class="stat-menu">•••</span>
+            </div>
+      
+            <div class="stat-main">
+              <span class="stat-value">$13.3M</span>
+              <span class="stat-change positive">↗ 12%</span>
+            </div>
           </div>
 
+          <!-- Net -->
+
           <div class="stat-card">
-            <span class="stat-label">Successfull</span>
-            <span class="stat-value">$950,230</span>
+            <div class="stat-top">
+              <div class="stat-title">
+                <span class="stat-icon">📊</span>
+                <span class="stat-label">Net</span>
+              </div>
+              <span class="stat-menu">•••</span>
+            </div>
+      
+            <div class="stat-main">
+              <span class="stat-value">$23.23M</span>
+              <span class="stat-change positive">↗ 8%</span>
+            </div>
           </div>
+
+          <!-- Average Expenses -->
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-title">
+                <span class="stat-icon">📅</span>
+                <span class="stat-label">Average</span>
+              </div>
+              <span class="stat-menu">•••</span>
+            </div>
+      
+            <div class="stat-main">
+              <span class="stat-value">$23.23M</span>
+              <span class="stat-change negative">↘ 12%</span>
+            </div>
+          </div>
+
         </div>
       </section>
 
+      <!-- SECOND SECTION  Controls-->
+
       <section id="filters">
-        <h2>Filters</h2>
+
+        <div class="filters-header"> 
+        <h2 class="filters-title">Transactions</h2>
+
         <div class="filters-bar">
+
+          <!-- Always visible -->
+
+          <label class="visually-hidden" for="search-input">
+            Search transactions <!-- For accesibility only-->
+          </label>
+
           <input type="text" placeholder="Search transactions" />
 
+          <button id="filter-toggle">
+            <span class="filter-icon">≡</span>
+            Filter
+          </button>
+          
+
+          <!-- Hidden panel -->
+           <div class="filters-panel">
+            <h2 class="visually-hidden">Filters</h2>
           <select>
             <option value="">All Status</option>
-            <option class="status-completed" value="completed">Completed</option>
+            <option class="status-completed" value="completed">
+              Completed
+            </option>
             <option class="status-pending" value="pending">Pending</option>
             <option value="failed">Failed</option>
           </select>
@@ -61,7 +140,12 @@
 
           <button type="button">Clear</button>
         </div>
+      </div>
+      </div>
+
       </section>
+
+      <!-- THIRD SECTION Content -->
 
       <section id="transactions">
         <h2>Transactions</h2>
@@ -82,6 +166,8 @@
         </div>
       </section>
 
+      <!-- FOURTH SECTION -->
+
       <aside id="transaction-details">
         <h2>Transaction Details</h2>
         <div class="details-panel">
@@ -89,6 +175,8 @@
         </div>
       </aside>
     </main>
-    <script type="module" src="js/main.js"></script>
-  </body>
+  </div>
+  <script type="module" src="js/main.js"></script>
+</body>
+
 </html>

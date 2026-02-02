@@ -17,3 +17,20 @@ transactions = data from api
 allTransaction = clean form of data used by UI          
 
 can't login live states
+
+on mobile transactions details should be floating above
+clear button must close the filterpanel
+
+Workflow -
+
+Divide project in days
+Divide days in checkpoint or parts
+Get summery or previous work 
+Assign each day an unique tasks
+
+
+LEft 
+
+TABLE UI
+PAGINATION
+STATS from data
