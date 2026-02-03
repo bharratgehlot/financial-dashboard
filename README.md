@@ -81,12 +81,11 @@ financial-dashboard/
 
 - Dashboard overview
 
-<img src="https://github.com/user-attachments/assets/7fe4783e-d41e-47bd-8748-f588c7f5c4d4" width="90%" />
+<img src="https://github.com/user-attachments/assets/490eb812-00f1-4e4f-a64a-a6f7f045f1a0" width="90%" />
 
 - Transaction table with filters
 
-<img src="https://github.com/user-attachments/assets/490eb812-00f1-4e4f-a64a-a6f7f045f1a0" width="90%" />
-
+<img src="https://github.com/user-attachments/assets/7fe4783e-d41e-47bd-8748-f588c7f5c4d4" width="90%" />
 
 - Transaction details panel
 
