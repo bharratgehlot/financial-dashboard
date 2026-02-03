@@ -1,38 +1,86 @@
-# Financial Dashboard
+# 💳 Financial Transactions Dashboard
 
-A responsive financial dashboard built with **Vanilla JavaScript**, simulating transaction management in a fintech-style application.
+## Project Intro
+The **Financial Transactions Dashboard** is a frontend-focused fintech project built using **Vanilla JavaScript**.
+It simulates a real-world transaction monitoring system where users can view, search, filter, and analyze financial transactions fetched from a REST API.
 
-This project is designed to demonstrate frontend fundamentals such as DOM manipulation, REST API integration, state management, and responsive UI design — without using any frameworks.
-
----
-
-## 🚀 Features
-
-- Transaction overview with summary statistics
-- Filter and search controls for transactions
-- Responsive transaction table
-- Transaction details side panel
-- Mobile-first, responsive layout
-- Clean separation of concerns (UI, state, API)
+The goal of this project is to demonstrate **production-style frontend engineering** used in fintech products—handling financial data, state updates, and UI responsiveness without relying on frameworks.
 
 ---
 
-## 🛠️ Tech Stack
+## Use Case
+This dashboard represents a common fintech internal tool used by:
+- Operations teams to monitor transactions
+- Support teams to investigate failed or pending payments
+- Analysts to view transaction volume and success rates
 
-- HTML5 (Semantic markup)
-- CSS3 (Grid & Flexbox)
-- Vanilla JavaScript (ES6+)
-- Fetch API (for REST integration)
-- Git & GitHub
+Key user actions:
+- View a list of transactions
+- Filter by status, date range, or amount
+- Search transactions in real time
+- Click a transaction to inspect detailed data
+- View live-updating dashboard statistics
 
 ---
 
-## 🎯 Purpose
+## Tech Stack
+- **Vanilla JavaScript (ES6+)**
+- **Fetch API** for REST API integration
+- **HTML5 (Semantic Markup)**
+- **CSS Grid & Flexbox** (mobile-first)
+- **Git & GitHub** for version control
+- **Mock REST API** (MockAPI / JSONPlaceholder / JSON Server)
 
-This project is built as a **frontend portfolio project** to showcase readiness for working on real-world, production-style financial dashboards.
+> No frameworks or libraries were used to reflect core JavaScript proficiency.
 
+---
 
-## NEXT
+## Fintech Patterns Used
+This project intentionally follows common fintech UI and data-handling patterns:
 
-500 transactions
-Pagination
+- **Transaction Table Pattern**
+  - Paginated, filterable, searchable transaction list
+- **Master–Detail View**
+  - Clicking a transaction opens a detailed inspection panel
+- **Derived State Calculations**
+  - Stats like total volume and success rate computed from filtered data
+- **Status-Based Visualization**
+  - Clear visual distinction between completed, pending, and failed transactions
+- **Resilient UI States**
+  - Loading, empty, and error states handled gracefully
+
+---
+
+## Project Architecture
+The project follows **separation of concerns**, similar to real production systems:
+
+```text
+financial-dashboard/
+├── index.html
+├── css/
+│   ├── layout.css
+│   └── components.css
+├── js/
+│   ├── api.js
+│   ├── state.js
+│   ├── dom.js
+│   └── main.js
+├── README.md
+└── .gitignore
+```
+
+**Data Flow**
+1. `api.js` fetches transaction data  
+2. `state.js` stores source data, filters, pagination, selection  
+3. `dom.js` renders UI based on state  
+4. `main.js` connects user actions → state updates → UI re-render  
+
+---
+
+## Screenshots
+
+- Dashboard overview
+- Transaction table with filters
+- Transaction details panel
+- Mobile responsive view
+

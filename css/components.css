@@ -1,4 +1,4 @@
-/* ====== Transaction Table Skleton ====== */
+/* ====== Transaction Table ====== */
 
 .table-wrapper {
   width: 100%;
@@ -7,88 +7,81 @@
 
 table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   table-layout: fixed;
+  background: #FFFFFF;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 8px 24px rgba(15, 23, 42, 0.04);
 }
 
 thead {
-  background-color: #f3f4f6;
+  background: #F8FAFC;
 }
 
 th,
 td {
-  padding: 0.75rem;
+  padding: 0.75rem 0.9rem;
   text-align: left;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 th {
   font-weight: 600;
-  color: #374151;
+  color: #475569;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  font-size: 0.7rem;
+}
+
+td {
+  color: #0F172A;
 }
 
 tbody tr {
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #E2E8F0;
+  transition: background 0.12s ease;
 }
 
-/* Selected transaction row */
-
-tbody tr.selected{
-  background-color: #E0ECFF;
+tbody tr:not(:last-child) td {
+  border-bottom: 1px solid #F1F5F9;
 }
 
-/* Hover feedback (desktop only feel) */
 tbody tr:hover {
-  background-color: #F1F5F9;
+  background: #F8FAFC;
   cursor: pointer;
 }
+
+tbody tr.selected {
+  background: #EFF6FF;
+}
+
 /* ===== Stats Cards ===== */
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* Override this property on mobile */
   gap: 16px;
-  margin-bottom: 24px;
-  /*border: solid 2px crimson; */
 }
 
 .stat-card {
-  background-color: #fff;
-  border: 1px solid #E6EAF0;
-  border-radius: 12px;
-  padding: 16px;
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 8px 24px rgba(15, 23, 42, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.stat-main {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-}
-
-.stat-label {
-  font-size: 13px;
-  color: #64748B;
-}
-
-.stat-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.stat-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #F1F5F9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  color: #2563EB;
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 8px rgba(15, 23, 42, 0.08),
+    0 12px 32px rgba(15, 23, 42, 0.06);
 }
 
 .stat-top {
@@ -103,14 +96,44 @@ tbody tr:hover {
   cursor: pointer;
 }
 
+.stat-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #EFF6FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #2563EB;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #64748B;
+}
+
+.stat-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
 .stat-value {
-  font-size: 22px;
-  font-weight: 600;
-  color: #0F172A;
+  font-size: 26px;
+  font-weight: 700;
+  color: #020617;
 }
 
 .stat-change {
   font-size: 13px;
+  font-weight: 500;
 }
 
 .stat-change.positive {
@@ -121,11 +144,24 @@ tbody tr:hover {
   color: #DC2626;
 }
 
-/* ===== Filters Layout ===== */
-
+/* ===== Filters ===== */
 #filters {
-  margin-bottom: 24px;
- /* border: solid 2px greenyellow; */
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.filters-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+}
+
+.filters-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #020617;
 }
 
 .filters-bar {
@@ -135,47 +171,40 @@ tbody tr:hover {
   position: relative;
 }
 
-.filters-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.filters-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #0F172A;
-  margin: 0;
-}
-
-/* Base inputs */
 .filters-bar input,
 .filters-bar select {
-  height: 40px;
-  padding: 0 12px;
+  height: 42px;
+  padding: 0 14px;
   font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #E6EAF0;
+  border-radius: 10px;
+  border: 1px solid #CBD5E1;
   background: #FFFFFF;
   color: #0F172A;
 }
 
-/* Filter toggle button (secondary) */
+.filters-bar input:focus,
+.filters-bar select:focus {
+  outline: none;
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.filters-bar>input[type="text"] {
+  flex: 1;
+  max-width: 180px;
+}
+
 #filter-toggle {
-  height: 40px;
-  padding: 0 12px;
-  border-radius: 8px;
-  background: #F8FAFC;
-  border: 1px solid #E6EAF0;
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
   color: #0F172A;
   cursor: pointer;
-
-  /* polish*/
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  white-space: nowrap;
 }
 
 #filter-toggle:hover {
@@ -191,17 +220,19 @@ tbody tr:hover {
 
 .filters-panel {
   position: absolute;
-  top: 48px;
+  top: 50px;
   right: 0;
   width: 260px;
   padding: 16px;
   background: #FFFFFF;
-  border: 1px solid #E6EAF0;
-  border-radius: 12px;
+  border-radius: 14px;
+  border: 1px solid #E2E8F0;
   display: none;
   flex-direction: column;
   gap: 12px;
   z-index: 10;
+  box-shadow:
+    0 4px 12px rgba(15, 23, 42, 0.08);
 }
 
 .filters-panel input,
@@ -209,7 +240,6 @@ tbody tr:hover {
   width: 100%;
 }
 
-/* Clear button */
 .filters-panel button {
   background: none;
   border: none;
@@ -223,29 +253,26 @@ tbody tr:hover {
   text-decoration: underline;
 }
 
-.filters-bar>input[type="text"] {
-  flex: 1;
-  max-width: 170px;
-  min-width: 100px;
-}
-
-
-/* ===== Transaction Details Panel ===== */
+/* ===== Transaction Details ===== */
 
 #transaction-details {
-  border-left: 1px solid #E6EAF0;
-  padding-left: 16px;
+  padding-left: 20px;
 }
 
 .details-panel {
   max-width: 360px;
-  margin: 8px 0;
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.06),
+    0 8px 24px rgba(15, 23, 42, 0.04);
   font-size: 14px;
+  border: 1px solid #E2E8F0;
 }
 
-
 .details-empty {
-  color: #999;
+  color: #94A3B8;
   font-style: italic;
   text-align: center;
 }
@@ -253,22 +280,38 @@ tbody tr:hover {
 .details-item {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   margin-bottom: 10px;
-  font-size: 14px;
 }
 
 .details-item strong {
-  color: #374151;
+  color: #475569;
   font-weight: 600;
   min-width: 90px;
 }
 
 .details-item span {
+  font-weight: 500;
   color: #0F172A;
-  text-align: right;
 }
 
+/* ===== Content Separation (Minimal) ===== */
+
+.stats-grid {
+  padding-bottom: 16px;
+  border-bottom: 2px solid #E2E8F0;
+}
+
+.table-wrapper {
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  background: #FFFFFF;
+}
+
+#transaction-details {
+  padding-left: 20px;
+}
+
+/* Status */
 .status.completed {
   color: #16A34A;
 }
@@ -281,49 +324,40 @@ tbody tr:hover {
   color: #DC2626;
 }
 
-/* ===== Mobile Overrides ===== */
+/* ===== Mobile ===== */
 
 @media (max-width: 768px) {
-
-  /* Stats cards stack */
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
-
-  /* Filter wrap nicely */
-  .filters-bar {
-    flex-wrap: nowrap;
-  }
-
-  .filters-bar > input[type="text"] {
-    flex: 1 1 100%;
-    max-width: 75%;
-    gap: 8px;
-  }
-
 
   #transaction-details {
     border-left: none;
     padding-left: 0;
   }
 
-    .filters-header {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 8px;
+  .filters-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .filters-title {
+    font-size: 1rem;
+  }
+
+    .stat-card {
+    
+      border-radius: 10px;
+      padding: 10px;
+   
     }
-  
-    .filters-title {
-      font-size: 0.95rem;
 
 }
 
-}
+/* ===== Desktop ===== */
 
-/* ===== Desktop exceptions ===== */
-
-/* Desktop: push filters to the right */
 @media (min-width: 769px) {
   .filters-bar {
     justify-content: flex-end;

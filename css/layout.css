@@ -1,14 +1,11 @@
 /* ==== Global Base Styles ==== */
 
-/* Box sizing reset */
-
+/* Reset */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-
-/* Removes default margins */
 
 body,
 h1,
@@ -17,80 +14,64 @@ p {
   margin: 0;
 }
 
-/* Base body layout */
-
+/* Body */
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
-  line-height: 1.5rem;
-  background-color: #F6F8FB;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Ubuntu, sans-serif;
+  line-height: 1.6;
+  background-color: #F1F5F9;
+  color: #0F172A;
 }
 
+/* Header */
 header {
   text-align: center;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #a8badf;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #E2E8F0;
   background: transparent;
-  /* border: solid 2px red; */
 }
 
+/* Container (App shell) */
 .container {
-  padding: 24px;
-  border: solid 2px black;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #FFFFFF;
+  padding: 28px;
+  max-width: 1280px;
+  margin: 24px auto;
+  background: #F8FAFC;
+  border-radius: 8px;
+  border: 2px solid #E2E8F0;
+  /* minimal fintech shadow */
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.04),
+      0 6px 16px rgba(15, 23, 42, 0.05);
 }
 
+/* Main layout */
 main {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
-  padding: 0;
+  gap: 1.25rem;
 }
 
-/* Section based stylings 
-
-section > h2,
-aside > h2 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #374151;
-}
-*/
-/* 
-section,
-aside {
-  padding: 1rem;
-  background-color: #ffffff;
-  border-radius: 6px;
-  border: 1px solid #e5e7eb;
-}
-*/
-
+/* Dashboard subtitle */
 .dashboard-subtitle {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  color: #6b7280;
+  color: #64748B;
   margin-top: 0.25rem;
+  margin-bottom: 1rem;
   text-align: center;
-  margin-bottom: 0.75rem;
 }
 
-
-/* ===== Spacing Refinements ===== */
-
-/* Consistent spacing between stacked sections */
-
-
-/* Section titles spacing */
+/* Section titles */
 section h2,
 aside h2 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
   margin-bottom: 0.75rem;
 }
 
-/* ===== Global Utility ===== */
-
-
+/* Utility */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -103,11 +84,12 @@ aside h2 {
   border: 0;
 }
 
-/* Mobile Layout specific */
-
+/* ===== Mobile ===== */
 @media (max-width: 768px) {
   .container {
-    padding: 12px;
+    padding: 14px;
+    margin: 0;
+    border-radius: 0;
   }
 
   main {
@@ -115,12 +97,10 @@ aside h2 {
   }
 
   header {
-    padding-bottom: 12px;
+    padding-bottom: 14px;
   }
 
-  /* Make dashboard subtitle breathe less */
   .dashboard-subtitle {
     margin-bottom: 0.5rem;
   }
-
 }
